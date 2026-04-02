@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Lotus App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  background:#0B1F3A;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+  padding:20px;
+}
+input, button {
+  width:90%;
+  padding:10px;
+  margin:5px;
+  border-radius:8px;
+  border:none;
+}
+.result {
+  background:green;
+  padding:15px;
+  margin-top:10px;
+  border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Lotus Seguros e Consórcios</h2>
+
+<input id="nome" placeholder="Nome do cliente">
+<input id="valor" type="number" placeholder="Valor mensal">
+<input id="anos" type="number" placeholder="Prazo (anos)">
+<input id="taxa" type="number" placeholder="Taxa (%)">
+
+<button onclick="calcular()">Calcular</button>
+
+<div class="result" id="resultado">Resultado aparecerá aqui</div>
+
+<script>
+function calcular() {
+  let valor = document.getElementById("valor").value;
+  let anos = document.getElementById("anos").value;
+  let taxa = document.getElementById("taxa").value;
+
+  let meses = anos * 12;
+  let taxaMensal = taxa / 100 / 12;
+
+  let futuro = valor * ((Math.pow(1 + taxaMensal, meses) - 1) / taxaMensal);
+
+  document.getElementById("resultado").innerHTML =
+    "Patrimônio: R$ " + futuro.toFixed(2);
+}
+</script>
+
+</body>
+</html>
